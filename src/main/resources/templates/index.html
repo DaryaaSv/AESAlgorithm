@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:margin="http://www.w3.org/1999/xhtml" xmlns:max-width="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<center>
+  <div style="padding:200px;">
+    <form action="/" method="post">
+    <div>
+      <label for="plain_text">Enter the text you want to decrypt or encrypt</label>
+      <input type="text" id="plain_text" name="plain_text"/>
+    </div>
+    <div>
+      <p>
+        <label for="key">Enter the key</label>
+        <input type="text" id="key" name="key"></input>
+      </p>
+    </div>
+      <div>
+        <p>
+          <label for="iv">Enter an initialization vector (for CBC or CFB modes)</label>
+          <input type="text" id="iv" name="iv"></input>
+        </p>
+      </div>
+    <div>
+      <p>
+        <label for="function">Select encryption/decryption function:</label>
+        <select name="function" id="function">
+          <option value="encryption">encryption</option>
+          <option value="decryption">decryption</option>
+        </select>
+      </p>
+    </div>
+    <div>
+      <p>
+        <label for="block_cipher">Choose block cipher mode of operation:</label>
+        <select name="block_cipher" id="block_cipher">
+          <option value="ecb">ECB</option>
+          <option value="cbc">CBC</option>
+          <option value="cfb">CFB</option>
+        </select>
+      </p>
+    </div>
+    <div>
+      <p>
+        <br>
+        <input type="checkbox" id="to_file_system" name="to_file_system">
+        <label for="to_file_system">Insert plaintext to file system</label>
+        <br><br><br>
+        <label for="myfile">Select the file with cipher text:</label>
+        <br>
+        <br>
+        <input type="file" id="myfile" name="myfile"><br><br>
+      </p>
+    </div>
+    <br>
+    <div>
+      <p>
+        <button type="submit" id="execute" name="execute">Encrypt/Decrypt</button>
+      </p>
+    </div>
+    <br>
+    <div>
+        <p>The result of encryption/decryption is:
+      <span th:text="${result}"></span>
+      <p/>
+    </div>
+
+    </form>
+  </div>
+</center>
+</body>
+</html>
