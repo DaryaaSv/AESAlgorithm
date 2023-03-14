@@ -55,6 +55,7 @@ public class MainController {
             writer.close();
         }
 
+
         return "redirect:/";
     }
 }
