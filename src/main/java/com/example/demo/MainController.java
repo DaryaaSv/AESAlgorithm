@@ -42,12 +42,8 @@ public class MainController {
             bufferedReader.close();
             fileReader.close();
         }
-        if(function.equals("encryption")) {
-            result = AESCipher.encrypt(plain_text, key, iv, selectedValue);
-        }
-        else if(function.equals("decryption")) {
-            result = AESCipher.decrypt(plain_text, key, iv, selectedValue);
-        }
+        if(function.equals("encryption")) result = AESCipher.encrypt(plain_text, key, iv, selectedValue);
+        else if(function.equals("decryption"))  result = AESCipher.decrypt(plain_text, key, iv, selectedValue);
 
         if(toFile != null) {
             FileWriter writer = new FileWriter("C:\\Users\\Dasha\\IdeaProjects\\demo2\\output.txt", false);
