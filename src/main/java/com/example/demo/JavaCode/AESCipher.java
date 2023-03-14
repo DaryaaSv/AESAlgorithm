@@ -21,7 +21,12 @@ public class AESCipher {
         byte[] ivBytes = iv.getBytes(StandardCharsets.UTF_8);
         IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
 
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+        if(mode.equals("ecb")) {
+            cipher.init(Cipher.ENCRYPT_MODE, keySpec);
+        }
+        else {
+            cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+        }
 
         byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes(StandardCharsets.UTF_8));
         String encrypted = Base64.getEncoder().encodeToString(encryptedBytes);
@@ -40,7 +45,13 @@ public class AESCipher {
         IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
 
         byte[] encryptedBytes = Base64.getDecoder().decode(encrypted);
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+
+        if(mode.equals("ecb")) {
+            cipher.init(Cipher.DECRYPT_MODE, keySpec);
+        }
+        else {
+            cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+        }
 
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
         String decrypted = new String(decryptedBytes, StandardCharsets.UTF_8);
