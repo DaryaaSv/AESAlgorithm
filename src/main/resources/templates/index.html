@@ -8,7 +8,7 @@
 <body>
 <center>
   <div style="padding:200px;">
-    <form action="/" method="post">
+    <form action="/" method="post" enctype="multipart/form-data">
     <div>
       <label for="plain_text">Enter the text you want to decrypt or encrypt</label>
       <input type="text" id="plain_text" name="plain_text"/>
@@ -50,10 +50,10 @@
         <input type="checkbox" id="to_file_system" name="to_file_system">
         <label for="to_file_system">Insert plaintext to file system</label>
         <br><br><br>
-        <label for="myfile">Select the file with cipher text:</label>
+        <label for="file">Select the file with cipher text:</label>
         <br>
         <br>
-        <input type="file" id="myfile" name="myfile"><br><br>
+        <input type="file" id="file" name="file"><br><br>
       </p>
     </div>
     <br>
