@@ -1,25 +1,16 @@
 package com.example.demo;
 
 import com.example.demo.JavaCode.AESCipher;
-import org.apache.commons.codec.DecoderException;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Controller;
-import org.apache.commons.codec.binary.Hex;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.security.Security;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Base64;
 
 @Controller
 public class MainController {
@@ -35,7 +26,7 @@ public class MainController {
                            @RequestParam() String iv,
                            @RequestParam("function") String function,
                            @RequestParam("block_cipher") String selectedValue,
-                           @RequestParam("to_file_system") String toFile,
+                           @RequestParam(name = "to_file_system", required = false) String toFile,
                            Model model
     ) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
@@ -47,7 +38,7 @@ public class MainController {
             result = AESCipher.decrypt(plain_text, key, iv, selectedValue);
         }
 
-        if(toFile.equals("on")) {
+        if(toFile != null) {
             FileWriter writer = new FileWriter("C:/Users/Dasha/output.txt", false);
             writer.write(result);
             writer.close();
